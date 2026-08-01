@@ -45,7 +45,7 @@ Il file `.env.example` elenca le variabili previste.
 
 ## Pubblicazione su GitHub Pages
 
-Il progetto usa l’export statico di Next.js e genera il sito nella cartella `out/`. Il workflow `.github/workflows/deploy-pages.yml` esegue automaticamente build e deploy a ogni push su `main` e calcola il `basePath` dal nome del repository, quindi funzionano anche immagini e video su URL come `https://utente.github.io/fuoriforno/`.
+Il progetto usa l’export statico di Next.js e genera il sito nella cartella `out/`. Il workflow `.github/workflows/deploy-pages.yml` esegue automaticamente build e deploy a ogni push su `main` e legge URL pubblico e `basePath` direttamente dalla configurazione GitHub Pages. In questo modo funziona sia su un URL come `https://utente.github.io/fuoriforno/` sia su un dominio personalizzato alla radice.
 
 1. Crea un repository GitHub e collega questa cartella:
 
@@ -60,11 +60,11 @@ Il progetto usa l’export statico di Next.js e genera il sito nella cartella `o
 2. Nel repository apri **Settings → Pages → Build and deployment → Source** e seleziona **GitHub Actions**.
 3. Apri la tab **Actions** e verifica il workflow “Deploy Fuori Forno to GitHub Pages”.
 
-Per un dominio personalizzato, crea la variabile Actions `SITE_URL` con l’URL completo (per esempio `https://www.fuoriforno.it`) e, solo se il sito vive in una sottocartella, `PAGES_BASE_PATH` con il relativo prefisso. Senza queste variabili il workflow usa automaticamente l’URL standard di GitHub Pages.
+Per un dominio personalizzato, configurarlo in **Settings → Pages → Custom domain**. Il workflow rileva automaticamente URL e percorso corretti tramite `actions/configure-pages`. Le variabili Actions `SITE_URL` e `PAGES_BASE_PATH` restano disponibili soltanto come override espliciti.
 
 Prima del primo deploy pubblico:
 
 - completa `lib/legal-config.ts` e `lib/contact-config.ts`;
 - se attivi il form, aggiorna la Privacy policy indicando il provider scelto;
 - verifica sul dominio pubblicato che non vengano aggiunti strumenti di tracciamento non descritti nella Cookie policy;
-- imposta eventualmente `SITE_URL` per il dominio personalizzato.
+- verifica in GitHub Pages che il dominio personalizzato risulti attivo e abilita HTTPS appena disponibile.
