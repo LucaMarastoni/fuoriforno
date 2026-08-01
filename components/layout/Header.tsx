@@ -3,10 +3,12 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
+import { contactConfig } from "@/lib/contact-config";
 
 const navItems = [
   { label: "Esperienza", href: "#esperienza" },
   { label: "Come funziona", href: "#come-funziona" },
+  { label: "3 attività", href: "#attivita" },
   { label: "Le pizze", href: "#pizze" },
   { label: "Eventi", href: "#eventi" },
   { label: "Contatti", href: "#contatti" },
@@ -69,6 +71,21 @@ export function Header() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
+            {contactConfig.instagram ? (
+              <a
+                href={contactConfig.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grid size-10 place-items-center rounded-full border border-white/25 text-white transition-colors hover:border-white/55 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fire"
+                aria-label="Apri il profilo Instagram di Fuori Forno"
+              >
+                <svg viewBox="0 0 24 24" className="size-[1.05rem]" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" />
+                  <circle cx="12" cy="12" r="4.1" />
+                  <circle cx="17.65" cy="6.45" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+            ) : null}
             <a
               href="#contatti"
               className="rounded-full bg-dough px-4 py-2.5 text-xs font-extrabold text-charcoal transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fire sm:px-5"

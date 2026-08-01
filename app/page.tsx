@@ -4,7 +4,6 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { EventsSection } from "@/components/sections/EventsSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { FoundersSection } from "@/components/sections/FoundersSection";
-import { GallerySection } from "@/components/sections/GallerySection";
 import { GamesSection } from "@/components/sections/GamesSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ManifestoSection } from "@/components/sections/ManifestoSection";
@@ -24,7 +23,6 @@ export default function Home() {
         <PizzaSection />
         <GamesSection />
         <EventsSection />
-        <GallerySection />
         <ContactSection />
       </main>
       <Footer />

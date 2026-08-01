@@ -78,15 +78,16 @@ select {
   display: none;
 }
 
-.mobile-carousel-track {
+.horizontal-scroll-track {
   overscroll-behavior-inline: contain;
   scroll-padding-inline: 1.25rem;
-  touch-action: pan-y;
+  touch-action: pan-x pan-y pinch-zoom;
   user-select: none;
   -webkit-user-select: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.mobile-carousel-track img {
+.horizontal-scroll-track img {
   -webkit-user-drag: none;
 }
 

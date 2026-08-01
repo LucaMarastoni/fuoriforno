@@ -12,8 +12,13 @@ export function PizzaSection() {
 
   const goTo = (index: number) => {
     const safeIndex = (index + pizzas.length) % pizzas.length;
-    const card = trackRef.current?.children.item(safeIndex) as HTMLElement | null;
-    card?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    const track = trackRef.current;
+    const card = track?.children.item(safeIndex) as HTMLElement | null;
+    if (track && card) {
+      const trackRect = track.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+      track.scrollTo({ left: track.scrollLeft + cardRect.left - trackRect.left, behavior: "smooth" });
+    }
     setActive(safeIndex);
   };
 
@@ -39,7 +44,7 @@ export function PizzaSection() {
 
       <div
         ref={trackRef}
-        className="no-scrollbar mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-5 sm:gap-6 sm:px-8 lg:px-[max(3rem,calc((100vw-1600px)/2+3rem))]"
+        className="horizontal-scroll-track no-scrollbar mt-14 flex snap-x snap-proximity gap-4 overflow-x-auto px-5 pb-5 sm:gap-6 sm:px-8 lg:px-[max(3rem,calc((100vw-1600px)/2+3rem))]"
         role="region"
         aria-label="Proposte pizza indicative"
         tabIndex={0}
@@ -49,16 +54,24 @@ export function PizzaSection() {
         }}
         onScroll={(event) => {
           const element = event.currentTarget;
-          const firstCard = element.firstElementChild as HTMLElement | null;
-          if (!firstCard) return;
-          const index = Math.round(element.scrollLeft / (firstCard.offsetWidth + 24));
-          setActive(Math.min(pizzas.length - 1, Math.max(0, index)));
+          const trackRect = element.getBoundingClientRect();
+          let closestIndex = 0;
+          let closestDistance = Number.POSITIVE_INFINITY;
+          Array.from(element.children).forEach((child, index) => {
+            const cardRect = child.getBoundingClientRect();
+            const distance = Math.abs(cardRect.left - trackRect.left);
+            if (distance < closestDistance) {
+              closestIndex = index;
+              closestDistance = distance;
+            }
+          });
+          setActive((current) => current === closestIndex ? current : closestIndex);
         }}
       >
         {pizzas.map((pizza, index) => (
           <article key={pizza.name} className="group w-[85vw] max-w-[38rem] shrink-0 snap-start">
             <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-white/5">
-              <Image src={pizza.image} alt={`Esempio visivo: ${pizza.name}`} fill sizes="(max-width: 768px) 85vw, 610px" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
+              <Image src={pizza.image} alt={`Esempio visivo: ${pizza.name}`} fill sizes="(max-width: 768px) 85vw, 610px" draggable={false} className="object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
               <span className="absolute left-4 top-4 rounded-full bg-charcoal/75 px-3 py-1.5 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-dough backdrop-blur-sm">
                 {pizza.category}
               </span>

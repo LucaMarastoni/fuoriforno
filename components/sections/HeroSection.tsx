@@ -37,7 +37,7 @@ export function HeroSection() {
           </motion.h1>
           <motion.div variants={reduceMotion ? undefined : fadeUp} className="mt-7 flex max-w-3xl flex-wrap gap-3">
               <PrimaryButton href="#contatti">Portaci al tuo evento</PrimaryButton>
-              <PrimaryButton href="#esperienza" variant="outline">Scopri l’esperienza</PrimaryButton>
+              <PrimaryButton href="#attivita" variant="outline">Scopri le 3 attività</PrimaryButton>
           </motion.div>
         </div>
         <motion.div variants={reduceMotion ? undefined : fadeUp} className="shrink-0">

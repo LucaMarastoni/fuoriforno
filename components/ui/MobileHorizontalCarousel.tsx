@@ -1,12 +1,9 @@
 "use client";
 
 import {
-  motion,
   useMotionValue,
   useReducedMotion,
-  useTransform,
   type MotionValue,
-  type PanInfo,
 } from "framer-motion";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
@@ -30,9 +27,7 @@ type MobileCarouselSlideProps<T> = {
   total: number;
   active: boolean;
   itemClassName: string;
-  reduceMotion: boolean;
   renderItem: MobileHorizontalCarouselProps<T>["renderItem"];
-  onSwipe: (index: number, direction: -1 | 1) => void;
 };
 
 function MobileCarouselSlide<T>({
@@ -41,41 +36,19 @@ function MobileCarouselSlide<T>({
   total,
   active,
   itemClassName,
-  reduceMotion,
   renderItem,
-  onSwipe,
 }: MobileCarouselSlideProps<T>) {
-  const dragX = useMotionValue(0);
-  const parallaxX = useTransform(dragX, [-80, 80], [8, -8]);
-
-  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    if (Math.abs(info.offset.x) < 42 && Math.abs(info.velocity.x) < 320) return;
-    onSwipe(index, info.offset.x < 0 ? 1 : -1);
-  };
+  const parallaxX = useMotionValue(0);
 
   return (
-    <motion.article
+    <article
       data-carousel-item
       className={`shrink-0 snap-center select-none ${itemClassName}`}
-      style={{ x: dragX }}
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={reduceMotion ? 0 : 0.14}
-      dragMomentum={false}
-      onDragEnd={handleDragEnd}
-      animate={
-        reduceMotion
-          ? { opacity: 1, scale: 1, y: 0 }
-          : active
-            ? { opacity: 1, scale: 1, y: 0 }
-            : { opacity: 0.6, scale: 0.94, y: 10 }
-      }
-      transition={{ duration: reduceMotion ? 0.01 : 0.35, ease: [0.22, 1, 0.36, 1] }}
       aria-label={`${index + 1} di ${total}`}
       aria-current={active ? "true" : undefined}
     >
       {renderItem(item, index, active, parallaxX)}
-    </motion.article>
+    </article>
   );
 }
 
@@ -153,7 +126,7 @@ export function MobileHorizontalCarousel<T>({
     <div className="md:hidden">
       <div
         ref={carouselRef}
-        className="mobile-carousel-track no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-7 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fire sm:-mx-8 sm:px-8"
+        className="horizontal-scroll-track no-scrollbar -mx-5 flex snap-x snap-proximity gap-4 overflow-x-auto px-5 pb-7 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fire sm:-mx-8 sm:px-8"
         role="region"
         aria-roledescription="carosello"
         aria-label={ariaLabel}
@@ -178,9 +151,7 @@ export function MobileHorizontalCarousel<T>({
             total={items.length}
             active={activeIndex === index}
             itemClassName={itemClassName}
-            reduceMotion={shouldReduceMotion}
             renderItem={renderItem}
-            onSwipe={(currentIndex, direction) => goTo(currentIndex + direction)}
           />
         ))}
       </div>
