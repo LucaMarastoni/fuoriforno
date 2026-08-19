@@ -24,6 +24,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
   title: "Fuori Forno | Pizza napoletana per eventi",
   description: "Fuori Forno porta forno, pizza napoletana e intrattenimento direttamente al tuo evento.",
+  manifest: withBasePath("/images/favicon/site.webmanifest"),
+  icons: {
+    icon: [
+      { url: withBasePath("/images/favicon/favicon.ico"), sizes: "any" },
+      { url: withBasePath("/images/favicon/favicon-16x16.png"), sizes: "16x16", type: "image/png" },
+      { url: withBasePath("/images/favicon/favicon-32x32.png"), sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: withBasePath("/images/favicon/favicon.ico"),
+    apple: [
+      { url: withBasePath("/images/favicon/apple-touch-icon.png"), sizes: "180x180", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "Fuori Forno | Pizza napoletana per eventi",
     description: "Forno, pizza napoletana e intrattenimento direttamente al tuo evento.",
