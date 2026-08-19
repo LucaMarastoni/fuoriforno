@@ -2,7 +2,6 @@
 
 import { AnimatedHeading } from "@/components/ui/AnimatedHeading";
 import { ImageReveal } from "@/components/ui/ImageReveal";
-import { MobileHorizontalCarousel } from "@/components/ui/MobileHorizontalCarousel";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { withBasePath } from "@/lib/site-path";
 
@@ -58,29 +57,24 @@ export function ExperienceSection() {
           </p>
         </div>
 
-        <div className="mt-16 md:hidden">
-          <MobileHorizontalCarousel
-            items={experienceItems}
-            itemClassName="w-[82vw] max-w-[82vw]"
-            ariaLabel="I quattro elementi dell’esperienza Fuori Forno"
-            renderItem={(item) => (
-              <>
-                <ImageReveal
-                  src={item.image}
-                  alt={item.alt}
-                  sizes="82vw"
-                  className="aspect-[4/5] rounded-[1.5rem] bg-white/5"
-                />
-                <div className="mt-4 grid grid-cols-[2.5rem_1fr] gap-2">
-                  <span className="font-serif text-lg italic text-fire">{item.index}</span>
-                  <div>
-                    <h3 className="text-lg font-bold tracking-tight">{item.title}</h3>
-                    <p className="mt-1 max-w-sm text-sm leading-6 text-white/52">{item.text}</p>
-                  </div>
+        <div className="mt-16 grid gap-12 md:hidden">
+          {experienceItems.map((item) => (
+            <article key={item.index}>
+              <ImageReveal
+                src={item.image}
+                alt={item.alt}
+                sizes="calc(100vw - 2.5rem)"
+                className="aspect-[4/3] rounded-[1.5rem] bg-white/5"
+              />
+              <div className="mt-4 grid grid-cols-[2.5rem_1fr] gap-2">
+                <span className="font-serif text-lg italic text-fire">{item.index}</span>
+                <div>
+                  <h3 className="text-lg font-bold tracking-tight">{item.title}</h3>
+                  <p className="mt-1 max-w-sm text-sm leading-6 text-white/52">{item.text}</p>
                 </div>
-              </>
-            )}
-          />
+              </div>
+            </article>
+          ))}
         </div>
 
         <div className="hidden md:block">

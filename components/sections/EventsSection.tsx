@@ -4,7 +4,6 @@ import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { AnimatedHeading } from "@/components/ui/AnimatedHeading";
-import { MobileHorizontalCarousel } from "@/components/ui/MobileHorizontalCarousel";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { events } from "@/data/events";
 
@@ -21,40 +20,24 @@ export function EventsSection() {
           <span className="block font-serif font-normal italic text-fire">possiamo esserci.</span>
         </AnimatedHeading>
 
-        <div className="mt-12 md:hidden">
-          <MobileHorizontalCarousel
-            items={events}
-            itemClassName="w-[86vw] max-w-[86vw]"
-            ariaLabel="Tipologie di evento Fuori Forno"
-            hint="Scorri"
-            renderItem={(event, index, isActive) => (
-              <div className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] bg-white/5">
-                <motion.div
-                  className="absolute inset-0"
-                  animate={{ scale: reduceMotion || !isActive ? 1 : 1.04 }}
-                  transition={{ duration: reduceMotion ? 0.01 : 0.5, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Image
-                    src={event.image}
-                    alt={`Atmosfera per ${event.name}`}
-                    fill
-                    sizes="86vw"
-                    draggable={false}
-                    className="object-cover"
-                  />
-                </motion.div>
-                <div className={`absolute inset-0 bg-gradient-to-t from-black/88 via-black/15 to-transparent transition-opacity duration-300 ${isActive ? "opacity-90" : "opacity-100"}`} />
-                <motion.div
-                  className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-5"
-                  animate={reduceMotion ? { opacity: 1, y: 0 } : { opacity: isActive ? 1 : 0.55, y: isActive ? 0 : 8 }}
-                  transition={{ duration: reduceMotion ? 0.01 : 0.35 }}
-                >
-                  <h3 className="max-w-[80%] text-3xl font-semibold leading-none tracking-[-0.045em]">{event.name}</h3>
-                  <span className="font-serif text-3xl italic text-fire">0{index + 1}</span>
-                </motion.div>
+        <div className="mt-12 grid gap-5 md:hidden">
+          {events.map((event, index) => (
+            <article key={event.name} className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-white/5">
+              <Image
+                src={event.image}
+                alt={`Atmosfera per ${event.name}`}
+                fill
+                sizes="calc(100vw - 2.5rem)"
+                draggable={false}
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/15 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-5">
+                <h3 className="max-w-[80%] text-3xl font-semibold leading-none tracking-[-0.045em]">{event.name}</h3>
+                <span className="font-serif text-3xl italic text-fire">0{index + 1}</span>
               </div>
-            )}
-          />
+            </article>
+          ))}
         </div>
 
         <div className="mt-16 hidden gap-10 md:grid lg:grid-cols-[1fr_.82fr] lg:items-start lg:gap-20">

@@ -22,6 +22,14 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
 html {
   scroll-behavior: smooth;
   background: var(--charcoal);
@@ -29,11 +37,17 @@ html {
 
 body {
   margin: 0;
-  overflow-x: hidden;
   background: var(--charcoal);
   color: white;
   font-family: var(--font-manrope), sans-serif;
   text-rendering: optimizeLegibility;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
 }
 
 ::selection {
