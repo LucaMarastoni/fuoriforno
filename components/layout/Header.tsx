@@ -9,7 +9,6 @@ const navItems = [
   { label: "Esperienza", href: "#esperienza" },
   { label: "Come funziona", href: "#come-funziona" },
   { label: "3 attività", href: "#attivita" },
-  { label: "Le pizze", href: "#pizze" },
   { label: "Eventi", href: "#eventi" },
   { label: "Contatti", href: "#contatti" },
 ] as const;
@@ -76,7 +75,7 @@ export function Header() {
                 href={contactConfig.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="grid size-10 place-items-center rounded-full border border-white/25 text-white transition-colors hover:border-white/55 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fire"
+                className="hidden size-10 place-items-center rounded-full border border-white/25 text-white transition-colors hover:border-white/55 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fire sm:grid"
                 aria-label="Apri il profilo Instagram di Fuori Forno"
               >
                 <svg viewBox="0 0 24 24" className="size-[1.05rem]" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8">

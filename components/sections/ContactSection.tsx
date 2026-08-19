@@ -72,7 +72,7 @@ export function ContactSection() {
     <section id="contatti" className="scroll-mt-24 bg-charcoal px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
       <div className="mx-auto max-w-[1600px]">
         <div className="rounded-[2rem] bg-tomato/[0.09] px-5 py-12 ring-1 ring-tomato/20 sm:px-10 lg:px-14 lg:py-16">
-          <SectionLabel index="07" light>Portaci al tuo evento</SectionLabel>
+          <SectionLabel index="05" light>Portaci al tuo evento</SectionLabel>
           <div className="mt-6 grid gap-8 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
             <AnimatedHeading className="max-w-5xl text-[clamp(3.5rem,7.4vw,8rem)] font-semibold leading-[0.88] tracking-[-0.065em]">
               Hai un evento in mente?

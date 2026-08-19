@@ -6,7 +6,6 @@ const links = [
   ["Esperienza", "#esperienza"],
   ["Come funziona", "#come-funziona"],
   ["3 attività", "#attivita"],
-  ["Le pizze", "#pizze"],
   ["Eventi", "#eventi"],
   ["Contatti", "#contatti"],
 ] as const;

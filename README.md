@@ -25,17 +25,15 @@ Le immagini WebP presenti sono visual temporanei originali e possono essere sost
 - `public/videos/fuori-forno-hero-mobile.mp4` — eventuale versione mobile più leggera futura
 - `public/videos/gallery/gallery-01.mp4` — clip breve per la galleria
 - `public/images/fuori-forno-poster.webp` — poster e fallback Hero
+- `public/images/logo-fuori-forno-*.png` — varianti ottimizzate del logo usate dal sito
 - `public/images/experience/` — forno, impasto, pizza, evento
 - `public/images/gallery/` — galleria editoriale
-- `public/images/pizzas/` — proposte gastronomiche
 - `public/images/events/` — tipologie di evento
 
 Per il video Hero usare MP4/H.264 senza audio, durata breve, loop pulito e una versione mobile compressa. Evitare file molto grandi perché il video non deve rallentare il primo rendering.
 
 ## Contenuti e integrazioni
 
-- Aggiornare nomi e testi dei fondatori in `data/founders.ts`.
-- Aggiornare pizze e categorie in `data/pizzas.ts`.
 - Configurare email, telefono, WhatsApp e Instagram in `lib/contact-config.ts`; i link vuoti non vengono mostrati.
 - Configurare `NEXT_PUBLIC_CONTACT_ENDPOINT` per abilitare l’invio reale del form. Senza endpoint il form mostra esplicitamente che l’integrazione manca e non simula un successo.
 - Impostare `NEXT_PUBLIC_SITE_URL` con il dominio reale per i metadata social.
