@@ -1,5 +1,5 @@
 export const contactConfig = {
-  email: "",
+  email: "fuoriforno@gmail.com",
   phone: "",
   whatsapp: "",
   instagram: "https://www.instagram.com/fuoriforno/",

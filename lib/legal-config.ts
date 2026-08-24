@@ -1,11 +1,7 @@
 import { contactConfig } from "@/lib/contact-config";
 
-/**
- * Completa questi dati prima di pubblicare il sito.
- * Sono lasciati vuoti intenzionalmente per non inventare informazioni legali.
- */
 export const legalConfig = {
-  controllerName: "",
+  controllerName: "Riccardo Agostini",
   controllerAddress: "",
   privacyEmail: contactConfig.email,
   vatNumber: "",
@@ -16,6 +12,5 @@ export const missingLegalValue = "Da completare prima della pubblicazione";
 
 export const isLegalConfigComplete = Boolean(
   legalConfig.controllerName &&
-    legalConfig.controllerAddress &&
     legalConfig.privacyEmail,
 );

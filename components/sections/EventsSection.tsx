@@ -12,17 +12,17 @@ export function EventsSection() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="eventi" className="scroll-mt-24 bg-charcoal px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
+    <section id="eventi" className="scroll-mt-24 bg-dough px-5 py-24 text-charcoal sm:px-8 sm:py-32 lg:px-12 lg:py-40">
       <div className="mx-auto max-w-[1600px]">
-        <SectionLabel index="03" light>Ogni occasione ha il suo fuoco</SectionLabel>
+        <SectionLabel index="03">Ogni occasione ha il suo fuoco</SectionLabel>
         <AnimatedHeading className="mt-6 max-w-6xl text-[clamp(3.4rem,7.5vw,8rem)] font-semibold leading-[0.88] tracking-[-0.065em]">
           Dove c’è una festa,
-          <span className="block font-serif font-normal italic text-fire">possiamo esserci.</span>
+          <span className="block font-serif font-normal italic text-tomato">possiamo esserci.</span>
         </AnimatedHeading>
 
         <div className="mt-12 grid gap-5 md:hidden">
           {events.map((event, index) => (
-            <article key={event.name} className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-white/5">
+            <article key={event.name} className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-charcoal/5">
               <Image
                 src={event.image}
                 alt={`Atmosfera per ${event.name}`}
@@ -32,7 +32,7 @@ export function EventsSection() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/15 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-5">
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-5 text-white">
                 <h3 className="max-w-[80%] text-3xl font-semibold leading-none tracking-[-0.045em]">{event.name}</h3>
                 <span className="font-serif text-3xl italic text-fire">0{index + 1}</span>
               </div>
@@ -46,7 +46,7 @@ export function EventsSection() {
               <button
                 key={event.name}
                 type="button"
-                className={`group flex w-full items-center justify-between border-b border-white/14 py-4 text-left text-[clamp(2.2rem,5.3vw,5.8rem)] font-semibold leading-none tracking-[-0.055em] transition-colors ${active === index ? "text-dough" : "text-white/28 hover:text-white/70"}`}
+                className={`group flex w-full items-center justify-between border-b border-charcoal/14 py-4 text-left text-[clamp(2.2rem,5.3vw,5.8rem)] font-semibold leading-none tracking-[-0.055em] transition-colors ${active === index ? "text-charcoal" : "text-charcoal/28 hover:text-charcoal/70"}`}
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
                 onClick={() => setActive(index)}
@@ -57,7 +57,7 @@ export function EventsSection() {
               </button>
             ))}
           </div>
-          <div className="sticky top-28 hidden aspect-[4/5] overflow-hidden rounded-[2rem] bg-white/5 lg:block">
+          <div className="sticky top-28 hidden aspect-[4/5] overflow-hidden rounded-[2rem] bg-charcoal/5 lg:block">
             <AnimatePresence mode="wait">
               <motion.div
                 key={events[active].image}
@@ -76,7 +76,7 @@ export function EventsSection() {
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:hidden">
             {events.map((event) => (
-              <article key={event.name} className="overflow-hidden rounded-2xl bg-white/5">
+              <article key={event.name} className="overflow-hidden rounded-2xl bg-charcoal/5">
                 <div className="relative aspect-[4/3]">
                   <Image src={event.image} alt={`Atmosfera per ${event.name}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
                 </div>
