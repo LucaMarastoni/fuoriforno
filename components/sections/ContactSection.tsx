@@ -245,9 +245,8 @@ export function ContactSection() {
               {errors.privacy ? <p id="privacy-error" className="mt-2 text-xs text-fire" role="alert">{errors.privacy}</p> : null}
             </div>
             <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-              <button type="submit" disabled={status === "loading"} className="inline-flex min-h-12 items-center justify-center gap-5 rounded-full bg-tomato px-7 text-sm font-bold text-white transition-colors hover:bg-fire disabled:cursor-wait disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fire">
+              <button type="submit" disabled={status === "loading"} className="inline-flex min-h-12 items-center justify-center rounded-full bg-tomato px-7 text-sm font-bold text-white transition-colors hover:bg-fire disabled:cursor-wait disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fire">
                 {status === "loading" ? "Invio…" : "Invia la richiesta"}
-                <span aria-hidden="true">↗</span>
               </button>
               <p className={`max-w-md text-xs leading-5 ${status === "error" ? "text-fire" : "text-white/38"}`} aria-live="polite" role="status">
                 {statusMessage || "I campi contrassegnati sono obbligatori."}

@@ -16,12 +16,9 @@ export function PrimaryButton({ href, children, variant = "fire" }: PrimaryButto
   return (
     <Link
       href={href}
-      className={`group inline-flex min-h-12 items-center justify-center gap-5 rounded-full px-6 text-sm font-bold transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fire ${variants[variant]}`}
+      className={`inline-flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-bold transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fire ${variants[variant]}`}
     >
       {children}
-      <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
-        ↗
-      </span>
     </Link>
   );
 }

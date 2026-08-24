@@ -46,14 +46,13 @@ export function EventsSection() {
               <button
                 key={event.name}
                 type="button"
-                className={`group flex w-full items-center justify-between border-b border-charcoal/14 py-4 text-left text-[clamp(2.2rem,5.3vw,5.8rem)] font-semibold leading-none tracking-[-0.055em] transition-colors ${active === index ? "text-charcoal" : "text-charcoal/28 hover:text-charcoal/70"}`}
+                className={`flex w-full items-center border-b border-charcoal/14 py-4 text-left text-[clamp(2.2rem,5.3vw,5.8rem)] font-semibold leading-none tracking-[-0.055em] transition-colors ${active === index ? "text-charcoal" : "text-charcoal/28 hover:text-charcoal/70"}`}
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
                 onClick={() => setActive(index)}
                 aria-pressed={active === index}
               >
                 {event.name}
-                <span className={`text-xl transition-transform ${active === index ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"}`} aria-hidden="true">↗</span>
               </button>
             ))}
           </div>
