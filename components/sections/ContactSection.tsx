@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useState, type FormEvent } from "react";
 import { AnimatedHeading } from "@/components/ui/AnimatedHeading";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -21,6 +22,15 @@ const initialForm: ContactPayload = {
   website: "",
 };
 
+const successSparks = [
+  { x: -70, y: -30, delay: 0.08 },
+  { x: -52, y: 54, delay: 0.16 },
+  { x: 4, y: -76, delay: 0.12 },
+  { x: 62, y: -42, delay: 0.2 },
+  { x: 70, y: 38, delay: 0.26 },
+  { x: 12, y: 72, delay: 0.22 },
+] as const;
+
 function validate(values: ContactPayload): FormErrors {
   const errors: FormErrors = {};
   if (values.name.trim().length < 2) errors.name = "Inserisci il tuo nome.";
@@ -38,6 +48,8 @@ export function ContactSection() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const [submittedName, setSubmittedName] = useState("");
+  const reduceMotion = useReducedMotion();
 
   const updateField = <K extends keyof ContactPayload>(field: K, value: ContactPayload[K]) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -58,8 +70,9 @@ export function ContactSection() {
     setStatusMessage("Invio in corso…");
     try {
       await submitContactForm(form);
+      setSubmittedName(form.name.trim().split(/\s+/)[0]);
       setStatus("success");
-      setStatusMessage("Richiesta inviata. Ti ricontatteremo presto.");
+      setStatusMessage("Richiesta inviata. Ti ricontatteremo entro poche ore.");
       setForm(initialForm);
     } catch (error) {
       setStatus("error");
@@ -67,10 +80,17 @@ export function ContactSection() {
     }
   };
 
+  const resetForm = () => {
+    setStatus("idle");
+    setStatusMessage("");
+    setSubmittedName("");
+    setErrors({});
+  };
+
   const fieldClass = "mt-2 min-h-12 w-full rounded-xl border border-white/16 bg-white/[0.045] px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/28 focus:border-fire";
 
   return (
-    <section id="contatti" className="scroll-mt-24 bg-charcoal px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
+    <section id="contatti" className="scroll-mt-24 bg-charcoal px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12 lg:py-32">
       <div className="mx-auto max-w-[1600px]">
         <div className="rounded-[2rem] bg-tomato/[0.09] px-5 py-12 ring-1 ring-tomato/20 sm:px-10 lg:px-14 lg:py-16">
           <SectionLabel index="04" light>Portaci al tuo evento</SectionLabel>
@@ -83,20 +103,99 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-14 lg:grid-cols-[.7fr_1.3fr] lg:gap-24">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-fire">Parliamo del tuo evento</p>
-            <h3 className="mt-5 max-w-md text-4xl font-semibold leading-[1.02] tracking-[-0.045em]">Poche informazioni per iniziare a immaginare tutto il resto.</h3>
-            <p className="mt-6 max-w-sm text-sm leading-6 text-white/48">
-              Nessun preventivo automatico: ogni proposta nasce dal luogo, dal numero di persone e dal tipo di atmosfera che vuoi creare.
-            </p>
-            <div className="mt-12 border-l border-fire pl-5">
-              <p className="font-serif text-2xl italic text-dough">Ogni evento comincia da una conversazione.</p>
-              <p className="mt-2 text-xs leading-5 text-white/40">Invia la richiesta: raccoglieremo i dettagli e ti ricontatteremo per costruire una proposta su misura.</p>
-            </div>
-          </div>
-
-          <form onSubmit={onSubmit} noValidate aria-label="Richiesta informazioni evento" className="relative grid gap-5 sm:grid-cols-2">
+        <AnimatePresence mode="wait" initial={false}>
+          {status === "success" ? (
+            <motion.div
+              key="success"
+              role="status"
+              aria-live="polite"
+              className="relative mx-auto mt-12 flex min-h-[24rem] max-w-5xl items-center justify-center overflow-hidden rounded-[2rem] border border-fire/25 bg-white/[0.035] px-6 py-12 text-center sm:mt-16 sm:px-10"
+              initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -18, scale: 0.98 }}
+              transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,107,44,0.15),transparent_58%)]" aria-hidden="true" />
+              {!reduceMotion ? (
+                <motion.div
+                  className="absolute left-1/2 top-1/2 size-72 -translate-x-1/2 -translate-y-1/2 rounded-full border border-fire/30"
+                  animate={{ scale: [0.72, 1.28], opacity: [0.55, 0] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
+                  aria-hidden="true"
+                />
+              ) : null}
+              <div className="relative z-10 max-w-3xl">
+                <motion.div
+                  className="relative mx-auto grid size-20 place-items-center rounded-full bg-fire text-charcoal shadow-[0_0_70px_rgba(255,107,44,0.35)]"
+                  initial={reduceMotion ? false : { scale: 0, rotate: -18 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.08, type: "spring", stiffness: 230, damping: 17 }}
+                  aria-hidden="true"
+                >
+                  {!reduceMotion ? successSparks.map((spark, index) => (
+                    <motion.span
+                      key={index}
+                      className="absolute left-1/2 top-1/2 size-2 rounded-full bg-dough"
+                      initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
+                      animate={{ x: spark.x, y: spark.y, opacity: [0, 1, 0], scale: [0, 1, 0.5] }}
+                      transition={{ delay: spark.delay, duration: 0.85, ease: "easeOut" }}
+                    />
+                  )) : null}
+                  <svg viewBox="0 0 32 32" className="size-10" fill="none">
+                    <motion.path
+                      d="m8 16 5.2 5.2L24 10.5"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={reduceMotion ? false : { pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ delay: reduceMotion ? 0 : 0.3, duration: reduceMotion ? 0 : 0.45 }}
+                    />
+                  </svg>
+                </motion.div>
+                <motion.p
+                  className="mt-8 text-xs font-extrabold uppercase tracking-[0.2em] text-fire"
+                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.38 }}
+                >
+                  Richiesta inviata
+                </motion.p>
+                <motion.h3
+                  className="mt-4 text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.92] tracking-[-0.06em]"
+                  initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.46 }}
+                >
+                  Fatto{submittedName ? `, ${submittedName}` : ""}.
+                  <span className="block font-serif font-normal italic text-dough">Ti ricontatteremo entro poche ore.</span>
+                </motion.h3>
+                <motion.button
+                  type="button"
+                  onClick={resetForm}
+                  className="mt-9 rounded-full border border-white/20 px-5 py-2.5 text-xs font-bold text-white/70 transition-colors hover:border-white/45 hover:text-white"
+                  initial={reduceMotion ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.62 }}
+                  whileHover={reduceMotion ? undefined : { scale: 1.03 }}
+                  whileTap={reduceMotion ? undefined : { scale: 0.97 }}
+                >
+                  Invia un’altra richiesta
+                </motion.button>
+              </div>
+            </motion.div>
+          ) : (
+          <motion.form
+            key="form"
+            onSubmit={onSubmit}
+            noValidate
+            aria-label="Richiesta informazioni evento"
+            className="relative mx-auto mt-12 grid max-w-5xl gap-5 sm:mt-16 sm:grid-cols-2"
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: -18 }}
+            transition={{ duration: reduceMotion ? 0 : 0.3 }}
+          >
             <div className="absolute left-[-10000px] top-auto size-px overflow-hidden" aria-hidden="true">
               <label htmlFor="website">Sito web</label>
               <input
@@ -147,15 +246,16 @@ export function ContactSection() {
             </div>
             <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
               <button type="submit" disabled={status === "loading"} className="inline-flex min-h-12 items-center justify-center gap-5 rounded-full bg-tomato px-7 text-sm font-bold text-white transition-colors hover:bg-fire disabled:cursor-wait disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fire">
-                {status === "loading" ? "Invio…" : "Parliamo del tuo evento"}
+                {status === "loading" ? "Invio…" : "Invia la richiesta"}
                 <span aria-hidden="true">↗</span>
               </button>
-              <p className={`max-w-md text-xs leading-5 ${status === "success" ? "text-dough" : status === "error" ? "text-fire" : "text-white/38"}`} aria-live="polite" role="status">
+              <p className={`max-w-md text-xs leading-5 ${status === "error" ? "text-fire" : "text-white/38"}`} aria-live="polite" role="status">
                 {statusMessage || "I campi contrassegnati sono obbligatori."}
               </p>
             </div>
-          </form>
-        </div>
+          </motion.form>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
