@@ -45,6 +45,14 @@ export function Footer() {
         <p className="border-y border-white/10 py-8 font-serif text-[clamp(2.6rem,7vw,7.5rem)] italic leading-none tracking-[-0.045em] text-dough">Pizza napoletana, fuori dal solito.</p>
         <div className="flex flex-col gap-4 pt-7 text-[0.62rem] uppercase tracking-[0.13em] text-white/32 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Fuori Forno</p>
+          <a
+            href="https://lucamarastoni.eu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="normal-case tracking-normal text-white/42 transition-colors hover:text-white"
+          >
+            Realizzato da Luca Marastoni Digital Solutions
+          </a>
           <div className="flex gap-5">
             <Link href="/privacy" className="hover:text-white">Privacy policy</Link>
             <Link href="/cookie-policy" className="hover:text-white">Cookie policy</Link>
