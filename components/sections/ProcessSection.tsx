@@ -51,7 +51,7 @@ export function ProcessSection() {
   return (
     <section id="come-funziona" className="scroll-mt-24 bg-dough px-5 py-24 text-charcoal sm:px-8 sm:py-32 lg:px-12 lg:py-40">
       <div className="mx-auto max-w-[1600px]">
-        <SectionLabel index="02">Come funziona</SectionLabel>
+        <SectionLabel index="01">Come funziona</SectionLabel>
         <AnimatedHeading className="mt-6 max-w-5xl text-[clamp(3.5rem,7.5vw,8rem)] font-semibold leading-[0.88] tracking-[-0.065em]">
           Tre passaggi.
           <span className="block font-serif font-normal italic text-tomato">Poi si accende.</span>

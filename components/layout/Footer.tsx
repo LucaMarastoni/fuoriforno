@@ -3,9 +3,8 @@ import { Logo } from "@/components/ui/Logo";
 import { contactConfig } from "@/lib/contact-config";
 
 const links = [
-  ["Esperienza", "#esperienza"],
   ["Come funziona", "#come-funziona"],
-  ["3 attività", "#attivita"],
+  ["Tre attività", "#attivita"],
   ["Eventi", "#eventi"],
   ["Contatti", "#contatti"],
 ] as const;

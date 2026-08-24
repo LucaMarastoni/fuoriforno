@@ -48,7 +48,7 @@ export function GamesSection() {
       <div className="absolute -right-48 top-12 size-[34rem] rounded-full border border-tomato/20" aria-hidden="true" />
       <div className="absolute -left-28 bottom-20 size-72 rounded-full bg-fire/10" aria-hidden="true" />
       <div className="relative mx-auto max-w-[1600px]">
-        <SectionLabel index="03">Le tre attività</SectionLabel>
+        <SectionLabel index="02">Le tre attività</SectionLabel>
         <div className="mt-6 grid gap-10 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
           <AnimatedHeading className="max-w-6xl text-[clamp(3.5rem,7.6vw,8rem)] font-semibold leading-[0.88] tracking-[-0.065em]">
             Tre momenti.

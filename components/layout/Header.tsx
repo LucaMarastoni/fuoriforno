@@ -6,17 +6,15 @@ import { Logo } from "@/components/ui/Logo";
 import { contactConfig } from "@/lib/contact-config";
 
 const navItems = [
-  { label: "Esperienza", href: "#esperienza" },
   { label: "Come funziona", href: "#come-funziona" },
-  { label: "3 attività", href: "#attivita" },
-  { label: "Eventi", href: "#eventi" },
+  { label: "Tre attività", href: "#attivita" },
   { label: "Contatti", href: "#contatti" },
 ] as const;
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState("esperienza");
+  const [active, setActive] = useState("come-funziona");
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {

@@ -14,7 +14,7 @@ export function EventsSection() {
   return (
     <section id="eventi" className="scroll-mt-24 bg-charcoal px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12 lg:py-40">
       <div className="mx-auto max-w-[1600px]">
-        <SectionLabel index="04" light>Ogni occasione ha il suo fuoco</SectionLabel>
+        <SectionLabel index="03" light>Ogni occasione ha il suo fuoco</SectionLabel>
         <AnimatedHeading className="mt-6 max-w-6xl text-[clamp(3.4rem,7.5vw,8rem)] font-semibold leading-[0.88] tracking-[-0.065em]">
           Dove c’è una festa,
           <span className="block font-serif font-normal italic text-fire">possiamo esserci.</span>
