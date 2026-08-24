@@ -10,6 +10,12 @@ export type ContactPayload = {
   eventType: string;
   message: string;
   privacy: boolean;
+  website: string;
+};
+
+type ContactResponse = {
+  ok?: boolean;
+  message?: string;
 };
 
 export async function submitContactForm(payload: ContactPayload): Promise<void> {
@@ -19,13 +25,22 @@ export async function submitContactForm(payload: ContactPayload): Promise<void> 
     );
   }
 
+  const body = new URLSearchParams();
+  Object.entries(payload).forEach(([key, value]) => {
+    body.set(key, String(value));
+  });
+
   const response = await fetch(contactEndpoint, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body,
   });
 
   if (!response.ok) {
     throw new Error("Invio non riuscito. Riprova o usa uno dei contatti disponibili.");
+  }
+
+  const result = (await response.json()) as ContactResponse;
+  if (!result.ok) {
+    throw new Error(result.message || "Invio non riuscito. Controlla i dati e riprova.");
   }
 }

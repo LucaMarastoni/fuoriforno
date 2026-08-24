@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           <li><strong>Dati inviati nel form:</strong> nome, email, eventuale telefono, data e località dell’evento, numero indicativo di invitati, tipologia di evento, messaggio e conferma di lettura dell’informativa.</li>
           <li><strong>Dati forniti spontaneamente:</strong> le ulteriori informazioni che scegli di comunicare durante i successivi contatti.</li>
         </ul>
-        <p>Al momento il form non trasmette dati finché non viene configurato un provider esterno tramite l’apposito endpoint. Prima di attivarlo, questa informativa dovrà essere aggiornata con il nome e le condizioni del provider scelto.</p>
+        <p>I dati inseriti nel form vengono trasmessi tramite Google Apps Script e archiviati in un foglio Google Sheets gestito dal titolare.</p>
       </section>
 
       <section>
@@ -56,13 +56,13 @@ export default function PrivacyPage() {
 
       <section>
         <h2>6. Destinatari e fornitori</h2>
-        <p>I dati possono essere trattati da personale autorizzato e da fornitori tecnici nominati, quando richiesto, responsabili del trattamento. Il sito è predisposto per l’hosting tramite <strong>GitHub Pages, servizio di GitHub, Inc.</strong> L’eventuale provider del form dovrà essere aggiunto qui prima della sua attivazione.</p>
-        <p>Per i trattamenti svolti direttamente dalla piattaforma consulta la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noreferrer">GitHub General Privacy Statement</a>.</p>
+        <p>I dati possono essere trattati da personale autorizzato e da fornitori tecnici nominati, quando richiesto, responsabili del trattamento. Il sito utilizza <strong>GitHub Pages, servizio di GitHub, Inc.</strong> per l’hosting e <strong>Google Apps Script e Google Sheets, servizi Google</strong> per ricevere e archiviare le richieste inviate tramite il form.</p>
+        <p>Per i trattamenti svolti dalle piattaforme consulta la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noreferrer">GitHub General Privacy Statement</a> e la <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Privacy Policy di Google</a>.</p>
       </section>
 
       <section>
         <h2>7. Trasferimenti fuori dallo Spazio Economico Europeo</h2>
-        <p>L’uso di fornitori internazionali può comportare il trattamento di dati in Paesi esterni allo SEE. Il titolare dovrà verificare, documentare e indicare le garanzie applicabili al provider di hosting e al futuro provider del form prima della pubblicazione definitiva.</p>
+        <p>L’uso di GitHub e Google può comportare il trattamento di dati in Paesi esterni allo SEE. Il titolare deve verificare e documentare le garanzie applicabili in base ai servizi e al tipo di account utilizzati.</p>
       </section>
 
       <section>
@@ -83,4 +83,3 @@ export default function PrivacyPage() {
     </LegalPage>
   );
 }
-

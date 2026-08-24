@@ -35,7 +35,7 @@ Per il video Hero usare MP4/H.264 senza audio, durata breve, loop pulito e una v
 ## Contenuti e integrazioni
 
 - Configurare email, telefono, WhatsApp e Instagram in `lib/contact-config.ts`; i link vuoti non vengono mostrati.
-- Configurare `NEXT_PUBLIC_CONTACT_ENDPOINT` per abilitare l’invio reale del form. Senza endpoint il form mostra esplicitamente che l’integrazione manca e non simula un successo.
+- Il form invia le richieste all’endpoint Google Apps Script configurato in `lib/contact-config.ts`; `NEXT_PUBLIC_CONTACT_ENDPOINT` può sostituirlo nei diversi ambienti.
 - Impostare `NEXT_PUBLIC_SITE_URL` con il dominio reale per i metadata social.
 - Completare nome, indirizzo, email privacy ed eventuale Partita IVA in `lib/legal-config.ts`, quindi far validare Privacy policy e Cookie policy sul caso concreto.
 
@@ -63,6 +63,6 @@ Per un dominio personalizzato, configurarlo in **Settings → Pages → Custom d
 Prima del primo deploy pubblico:
 
 - completa `lib/legal-config.ts` e `lib/contact-config.ts`;
-- se attivi il form, aggiorna la Privacy policy indicando il provider scelto;
+- verifica che la Privacy policy descriva correttamente l’account Google usato per archiviare le richieste;
 - verifica sul dominio pubblicato che non vengano aggiunti strumenti di tracciamento non descritti nella Cookie policy;
 - verifica in GitHub Pages che il dominio personalizzato risulti attivo e abilita HTTPS appena disponibile.

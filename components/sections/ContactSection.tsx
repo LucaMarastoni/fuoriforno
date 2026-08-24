@@ -18,6 +18,7 @@ const initialForm: ContactPayload = {
   eventType: "",
   message: "",
   privacy: false,
+  website: "",
 };
 
 function validate(values: ContactPayload): FormErrors {
@@ -90,12 +91,24 @@ export function ContactSection() {
               Nessun preventivo automatico: ogni proposta nasce dal luogo, dal numero di persone e dal tipo di atmosfera che vuoi creare.
             </p>
             <div className="mt-12 border-l border-fire pl-5">
-              <p className="font-serif text-2xl italic text-dough">Il form è pronto per essere collegato al provider scelto.</p>
-              <p className="mt-2 text-xs leading-5 text-white/40">Finché non viene configurato un endpoint, nessuna richiesta viene simulata o persa silenziosamente.</p>
+              <p className="font-serif text-2xl italic text-dough">Ogni evento comincia da una conversazione.</p>
+              <p className="mt-2 text-xs leading-5 text-white/40">Invia la richiesta: raccoglieremo i dettagli e ti ricontatteremo per costruire una proposta su misura.</p>
             </div>
           </div>
 
-          <form onSubmit={onSubmit} noValidate aria-label="Richiesta informazioni evento" className="grid gap-5 sm:grid-cols-2">
+          <form onSubmit={onSubmit} noValidate aria-label="Richiesta informazioni evento" className="relative grid gap-5 sm:grid-cols-2">
+            <div className="absolute left-[-10000px] top-auto size-px overflow-hidden" aria-hidden="true">
+              <label htmlFor="website">Sito web</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website}
+                onChange={(event) => updateField("website", event.target.value)}
+              />
+            </div>
             <Field id="name" label="Nome" error={errors.name} required>
               <input id="name" name="name" autoComplete="name" value={form.name} onChange={(event) => updateField("name", event.target.value)} className={fieldClass} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} />
             </Field>
